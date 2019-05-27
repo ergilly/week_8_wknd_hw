@@ -1,0 +1,67 @@
+.flag {
+  width: 90%;
+  max-height: 80px;
+  border: 1 solid rgb(134, 134, 134);
+  z-index: 1
+}
+
+.flag-cont {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px dashed rgb(148, 148, 148);
+  background-color: white;
+  overflow: overlay;
+}
+
+.aspect {
+  width: 0;
+  padding-bottom: 100%;
+}
+.flag-grid {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: auto;
+}
+.overlay {
+  display: block;
+  position: absolute;
+  background-color: rgba(0,0,0,0.5);
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+}
+.visited {
+  display: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+.flex {
+  display: flex;
+  cursor: pointer;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.selectedLetter:hover {
+  text-decoration: underline;
+  color: blue;
+}
+.underline {
+  text-decoration: underline;
+}
+#front {
+  z-index: 2;
+}
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}

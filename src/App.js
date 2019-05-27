@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import DropdownContainer from './containers/DropdownContainer.js'
+import BucketlistContainer from './containers/BucketlistContainer.js'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends Component {
+
+  componentDidMount() {
+
+    this.props.getCountries();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Bucketlist App</h1>
+        <DropdownContainer />
+        <div className='grid'>
+          <h2>Your BucketList:</h2>
+          Click to scratch out countries you've visited!
+          <BucketlistContainer />
+        </div>
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  getCountries() {
+    dispatch(() => {
+      fetch(`https://restcountries.eu/rest/v2/all`)
+      .then(res => res.json())
+      .then(countries => {
+        dispatch({
+          type: 'ADD_COUNTRIES',
+          countries
+        })
+      })
+    })
+  }
+})
+
+
+
+export default connect(null, mapDispatchToProps)(App);
